@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './Header';
 
-export default function Board() {
+export default function NotFound() {
   return (
     <>
       <Header />
-      <h1>게시판 페이지</h1>
+      <h1>Page Not Found</h1>
     </>
   );
 }
