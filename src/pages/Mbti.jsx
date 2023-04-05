@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SkyblueButton from '../components/SkyblueButton';
 import styled from 'styled-components';
 import { next } from '../store/modules/mbti';
+import Progress from '../components/Progress';
 
 const SurveyQuestion = styled.p`
   font-size: 1.5em;
@@ -36,7 +37,8 @@ export default function Mbti() {
             </li>
           );
         })}
-      </ul>{' '}
+      </ul>
+      <Progress page={page} maxPage={survey.length} />
     </>
   );
 }
