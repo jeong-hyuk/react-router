@@ -130,7 +130,7 @@ const initState = {
   },
 };
 
-const setDate = async (req, res) => {
+const setData = async (req, res) => {
   try {
     const client = await mongoClient.connect();
     const data = client.db('mbti').collection('data');
@@ -143,6 +143,49 @@ const setDate = async (req, res) => {
   }
 };
 
+//Redux 데이터를 가지고 오는 컨트롤러
+const getData = async (req, res) => {
+  try {
+    const client = await mongoClient.connect();
+    const data = client.db('mbti').collection('data');
+
+    const mbtiData = await data.find({}).toArray();
+    res.status(200).json(mbtiData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json('데이터 삽입 실패, 알 수 없는 문제 발생');
+  }
+};
+
+//방문자 수를 구하는 컨트롤러
+const getCounts = async (req, res) => {
+  try {
+    const client = await mongoClient.connect();
+    const countDB = client.db('mbti').collection('counts');
+
+    const counts = await countDB.findOne({ id: 1 });
+    res.status(200).json(counts);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json('데이터 삽입 실패, 알 수 없는 문제 발생');
+  }
+};
+
+const incCounts = async (req, res) => {
+  try {
+    const client = await mongoClient.connect();
+    const countDB = client.db('mbti').collection('counts');
+
+    await countDB.updateOne({ id: 1 }, { $inc: { counts: +1 } });
+    res.status(200).json('방문자 수 업데이트 성공');
+  } catch (err) {
+    console.log(err);
+    res.status(500).json('방문자 수 업데이트 실패, 알 수 없는 문제 발생');
+  }
+};
 module.exports = {
-  setDate,
+  setData,
+  getData,
+  getCounts,
+  incCounts,
 };

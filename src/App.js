@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import GlobalStyle from './components/GlobalStyle';
 import { useSelector } from 'react-redux';
 import Mbti from './pages/Mbti';
-import Show from './components/Show';
+import Show from './pages/Show';
 
 const Main = styled.main`
   box-sizing: border-box;
