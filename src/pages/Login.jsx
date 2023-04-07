@@ -20,15 +20,6 @@ export default function Login() {
         password: registerPwInput.current.value,
       },
     );
-    if (resRegister.status !== 200) return alert(resRegister.data);
-
-    alert(resRegister.data);
-    dispatch(
-      login({
-        id: registerIdInput.current.value,
-        password: registerPwInput.current.value,
-      }),
-    );
 
     //   const resRegister = await fetch('http://localhost:4000/user/register', {
     //     method: 'POST',
