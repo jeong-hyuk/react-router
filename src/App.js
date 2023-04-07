@@ -1,10 +1,10 @@
 import React from 'react';
-import Start from './pages/Start';
 import styled from 'styled-components';
 import GlobalStyle from './components/GlobalStyle';
 import { useSelector } from 'react-redux';
-import Mbti from './pages/Mbti';
-import Show from './pages/Show';
+import { Route, Routes } from 'react-router-dom';
+import Login from './pages/Login';
+import user from './store/modules/user';
 
 const Main = styled.main`
   box-sizing: border-box;
@@ -15,15 +15,13 @@ const Main = styled.main`
   text-align: center;
 `;
 function App() {
-  const page = useSelector((state) => state.mbti.page);
-  const survey = useSelector((state) => state.mbti.survey);
-
+  const isLogin = useSelector((state) => state.user.isLogin);
   return (
     <>
       <GlobalStyle />
-      <Main>
-        {page === 0 ? <Start /> : page <= survey.length ? <Mbti /> : <Show />}
-      </Main>
+      <Routes>
+        <Route path="/" element={isLogin ? <Main /> : <Login />} />
+      </Routes>
     </>
   );
 }

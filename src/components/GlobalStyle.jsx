@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
 }
   body {
     font-family: 'Tenada';
+    text-align: center;
   padding-top:1em;
   white-space:pre-wrap;
   }
